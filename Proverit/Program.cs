@@ -25,14 +25,6 @@ namespace Proverit
             var projectFilenames = GetProjectFilesFromSolution(slnFilename);
             var testProjectInfo = GetTestProjectInfo(projectFilenames).ToList();
 
-            //var uniqueOutputPaths = testProjectInfo.SelectMany(it => it.OutputPaths).Distinct().ToList();
-            //Console.WriteLine("Output paths:");
-            //foreach (var uniqueOutputPath in uniqueOutputPaths)
-            //{
-            //    Console.WriteLine("    {0}", uniqueOutputPath);
-            //}
-            //Console.WriteLine();
-
             foreach (var testDll in GetTestDlLs(testProjectInfo))
             {
                 Console.WriteLine(testDll);
@@ -90,7 +82,6 @@ namespace Proverit
             var subdir = Path.GetDirectoryName(slnFilename);
             if (subdir == null) throw new Exception();
             var sln = File.ReadAllLines(slnFilename);
-            // Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandaloneClient", "..\GUI\GUIFramework\StandaloneClient\StandaloneClient.csproj", "{E73558A8-5EB2-467A-9422-F64309752E26}"
             var x = sln
                 .Where(it => it.StartsWith(@"Project("))
                 .Select(it => it.Split(',')[1].Substring(1).Split('"')[1])
