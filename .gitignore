@@ -253,3 +253,5 @@ paket-files/
 
 *.bak
 *.received.txt
+zzzworking/*
+zzz/*
